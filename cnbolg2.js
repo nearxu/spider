@@ -8,6 +8,7 @@ var cheerio = require("cheerio"),
 eventproxy = require("eventproxy");
 
 var ep = new eventproxy();
+const fs = require("fs");
 
 var cnodeUrl = "https://www.cnblogs.com/?CategoryId=909#p";
 var topicUrls = [];
@@ -53,10 +54,26 @@ function getUrl(cnodeUrl) {
       function(err, result) {
         console.error(err);
         console.log(result, "err fun");
-        // saveNode(result);
+        saveNode(result);
       }
     );
   });
+}
+
+function saveNode(data) {
+  // 生成数据
+  // 写入数据, 文件不存在会自动创建
+  fs.writeFile(
+    __dirname + "/cnbolg2.json",
+    JSON.stringify({
+      status: 0,
+      data: data
+    }),
+    function(err) {
+      if (err) console.log(err);
+      console.log("写入完成");
+    }
+  );
 }
 
 var urls = [];
