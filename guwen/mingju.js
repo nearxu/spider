@@ -19,19 +19,28 @@ var poemItem = mongoose.Schema({
 
 var poemModel = mongoose.model("poemModel", poemItem);
 
-var saveDB = function(obj) {
+var saveCurPage = function(list, callback) {
+  list.forEach((item, index) => {
+    saveMongo(item);
+    if (index === list.length - 1) {
+      console.log("当前数据保存完毕，开始抓取下一页...");
+      callback(null, null);
+    }
+  });
+};
+
+var saveMongo = function(obj) {
   let dbModel = new poemModel(obj);
   dbModel.save(function(err) {
     if (err) {
       console.log(err);
       return;
     }
-    console.log("db 数据保存成功");
   });
 };
 
 var baseUrl = "https://so.gushiwen.org/mingju/default.aspx?p=";
-var totalPages = 5;
+var totalPages = 10;
 
 // 获取一级书目信息
 var init = function() {
@@ -59,7 +68,7 @@ function getList(pageUrlList) {
         console.log(err);
         return;
       }
-      console.log("运行结束！！！");
+      console.log("-------狗日的 我擦 数据终于抓取完了 !------");
     }
   );
 }
@@ -90,11 +99,12 @@ function getCurPage(pageUrl, callback) {
               .text()
           )
         };
-        console.log("正在保存", obj);
-        saveDB(obj);
+        poems.push(obj);
+        if (index === $(".sons .cont").length - 1) {
+          console.log("当前页面数据抓取完毕，开始保存...");
+          saveCurPage(poems, callback);
+        }
       });
-      callback(null, poems);
-      return poems;
     }
   });
 }
