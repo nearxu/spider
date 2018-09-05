@@ -260,7 +260,7 @@ var getItem = function(url, callback) {
           curPageData.push(obj);
           if (index === li.length - 1) {
             console.log("当前页面数据抓取完毕，开始保存...");
-            saveCurPage(curPageData, callback);
+            // saveCurPage(curPageData, callback);
           }
         });
       });
@@ -268,25 +268,25 @@ var getItem = function(url, callback) {
   });
 };
 
-var saveCurPage = function(list, callback) {
-  list.forEach((item, index) => {
-    // saveMongo(item);
-    console.log(item, "---------item-------");
-    if (index === list.length - 1) {
-      console.log("当前数据保存完毕，开始抓取下一页...");
-      callback(null, null);
-    }
-  });
-};
-// 保存到mongoDB
-var saveMongo = function(obj) {
-  var Model = new houseData(obj);
-  Model.save(function(err) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-  });
-};
+// var saveCurPage = function(list, callback) {
+//   list.forEach((item, index) => {
+//     // saveMongo(item);
+//     console.log(item, "---------item-------");
+//     if (index === list.length - 1) {
+//       console.log("当前数据保存完毕，开始抓取下一页...");
+//       callback(null, null);
+//     }
+//   });
+// };
+// // 保存到mongoDB
+// var saveMongo = function(obj) {
+//   var Model = new houseData(obj);
+//   Model.save(function(err) {
+//     if (err) {
+//       console.log(err);
+//       return;
+//     }
+//   });
+// };
 
 init();
