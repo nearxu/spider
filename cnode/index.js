@@ -1,3 +1,5 @@
+
+const formatData = require('./formatData.js');
 var cheerio = require("cheerio");
 var fs = require("fs");
 var async = require("async");
@@ -17,7 +19,7 @@ function ToJson(data) {
       status: 0,
       data: data
     }),
-    function(err) {
+    function (err) {
       if (err) console.log(err);
       console.log("写入完成");
     }
@@ -52,28 +54,29 @@ function getPageList(urls) {
   async.mapLimit(
     urls,
     5,
-    function(page, callback) {
+    function (page, callback) {
       getCurrentPage(page, callback);
     },
-    function(err, result) {
+    function (err, result) {
       if (err) {
         console.log(err);
         return;
       }
-      ToJson(result);
+      // ToJson(result);
+      console.log(formatData(result));
     }
   );
 }
 
 function getCurrentPage(page, callback) {
-  request(page, function(err, response, body) {
+  request(page, function (err, response, body) {
     if (err) {
       callback(null, null);
     } else {
       $ = cheerio.load(body);
       let lists = [];
       console.log(`第${page}页抓取中`);
-      $("#topic_list .cell").each(function(i, el) {
+      $("#topic_list .cell").each(function (i, el) {
         let $el = $(el);
         let obj = {
           id: `${i}${Math.random()}`,

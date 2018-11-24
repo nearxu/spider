@@ -110,4 +110,63 @@ const sumArr = typeArr.map(m => {
 //     comment: 9,
 //     averageViews: 422 } ] 'sum'
 
+
+// [ { type: 'node',
+//     len: 50,
+//     views: 56824,
+//     comment: 387,
+//     averageViews: 1136 },
+//   { type: 'vue',
+//     len: 9,
+//     views: 12771,
+//     comment: 64,
+//     averageViews: 1419 },
+//   { type: 'react',
+//     len: 10,
+//     views: 6783,
+//     comment: 70,
+//     averageViews: 678 },
+//   { type: '小程序',
+//     len: 5,
+//     views: 2657,
+//     comment: 15,
+//     averageViews: 531 } ] 'sum'
+
+
+[{
+  type: 'node',
+  len: 62,
+  views: 56364,
+  comment: 452,
+  averageViews: 909
+},
+{
+  type: '小程序',
+  len: 4,
+  views: 4144,
+  comment: 16,
+  averageViews: 1036
+},
+{
+  type: 'react',
+  len: 7,
+  views: 6226,
+  comment: 75,
+  averageViews: 889
+},
+{
+  type: 'vue',
+  len: 9,
+  views: 4162,
+  comment: 20,
+  averageViews: 462
+},
+{
+  type: 'angular',
+  len: 1,
+  views: 380,
+  comment: 0,
+  averageViews: 380
+}] 'sum'
+
 console.log(sumArr, "sum");

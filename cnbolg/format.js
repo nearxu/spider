@@ -82,4 +82,11 @@ const sumArr = typeArr.map(m => {
 //   { type: 'python', len: 84, views: 28073 },
 //   { type: 'android', len: 3, views: 467 } ]
 
+// [ { type: 'js', len: 78, views: 36535 },
+//   { type: 'python', len: 62, views: 20566 },
+//   { type: 'go', len: 72, views: 22656 },
+//   { type: 'ios', len: 8, views: 4442 },
+//   { type: 'java', len: 72, views: 17606 },
+//   { type: 'android', len: 3, views: 816 } ] 'sum'
+
 console.log(sumArr, "sum");
